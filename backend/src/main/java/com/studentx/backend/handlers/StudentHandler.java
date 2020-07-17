@@ -1,7 +1,7 @@
 package com.studentx.backend.handlers;
 
 import com.studentx.backend.data.StudentRepository;
-import com.studentx.backend.dto.ApiResponse;
+import com.studentx.backend.dto.SuccessResponse;
 import com.studentx.backend.models.Student;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
@@ -40,14 +40,14 @@ public class StudentHandler {
 
     @PostMapping()
     public @ResponseBody
-    ApiResponse createStudent(@RequestBody Student student) {
+    SuccessResponse createStudent(@RequestBody Student student) {
         studentRepository.save(student);
-        return new ApiResponse("Student created successfully");
+        return new SuccessResponse("Student created successfully");
     }
 
     @PutMapping(path = "/{studentId}")
     public @ResponseBody
-    ApiResponse updateStudent(@PathVariable Integer studentId, @RequestBody Student newStudent) {
+    SuccessResponse updateStudent(@PathVariable Integer studentId, @RequestBody Student newStudent) {
         Optional<Student> oldStudentOptional = studentRepository.findById(studentId);
 
         if (oldStudentOptional.isEmpty()) {
@@ -61,17 +61,17 @@ public class StudentHandler {
         }
 
         studentRepository.save(oldStudent);
-        return new ApiResponse("Student updated successfully");
+        return new SuccessResponse("Student updated successfully");
     }
 
     @DeleteMapping(path = "{studentId}")
     public @ResponseBody
-    ApiResponse deleteStudent(@PathVariable Integer studentId) {
+    SuccessResponse deleteStudent(@PathVariable Integer studentId) {
         boolean student = studentRepository.existsById(studentId);
 
         if (student) {
             studentRepository.deleteById(studentId);
-            return new ApiResponse("Student deleted successfully");
+            return new SuccessResponse("Student deleted successfully");
         } else {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND);
         }

@@ -6,8 +6,14 @@
 </head>
 <body>
 
+<a href="/create">Create new student</a>
 <ul th:each="student : ${students}">
-    <li th:text="${student}"></li>
+    <li>
+        <span th:text="${student}"></span>
+        <a th:href="@{/update(studentId=${student.id})}">Update</a>
+        <a th:href="@{/delete(studentId=${student.id})}">Delete</a>
+    </li>
+
 </ul>
 
 </body>

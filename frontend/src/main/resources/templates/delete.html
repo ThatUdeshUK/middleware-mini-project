@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <title>Title</title>
+</head>
+<body>
+
+<h1>Delete Student</h1>
+<a href="/">Goto home</a>
+<div th:if="${response}">
+    <div th:if="${response.status} == 200">
+        Student deleted successfully
+    </div>
+    <div th:if="${response.status} != 200">
+        Student delete failed
+        <div>
+            <span>Message:</span>
+            <div th:text="${response.message}"></div>
+        </div>
+    </div>
+</div>
+<form th:if="not ${response}" action="#" th:action="@{/delete(studentId=${student.id})}" th:object="${student}" method="post">
+    <div th:text="'Deleting ' + ${student.name} + ', are you sure?'"></div>
+    <input type="hidden" th:field="*{id}" />
+    <input type="submit" value="Delete"/>
+</form>
+
+</body>
+</html>

@@ -13,8 +13,9 @@ public class Student {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
-    @NonNull
     private String name;
+
+    private String email;
 
     public Integer getId() {
         return id;
@@ -24,7 +25,15 @@ public class Student {
         return name;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 }

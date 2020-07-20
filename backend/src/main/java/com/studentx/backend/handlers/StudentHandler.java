@@ -41,6 +41,10 @@ public class StudentHandler {
     @PostMapping()
     public @ResponseBody
     SuccessResponse createStudent(@RequestBody Student student) {
+        if (student.getName() == null || student.getEmail() == null) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+        }
+
         studentRepository.save(student);
         return new SuccessResponse("Student created successfully");
     }
@@ -58,6 +62,10 @@ public class StudentHandler {
 
         if (newStudent.getName() != null) {
             oldStudent.setName(newStudent.getName());
+        }
+
+        if (newStudent.getEmail() != null) {
+            oldStudent.setEmail(newStudent.getEmail());
         }
 
         studentRepository.save(oldStudent);

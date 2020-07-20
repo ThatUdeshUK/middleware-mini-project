@@ -47,13 +47,15 @@
             <tr>
                 <th>Id</th>
                 <th>Name</th>
+                <th>Email</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
             <tr th:each="student : ${students}">
-                <th th:text="${student.id}">1</th>
+                <th th:text="${student.id}"></th>
                 <td th:text="${student.name}"></td>
+                <td th:text="${student.email}"></td>
                 <td>
                     <div class="buttons">
                         <a class="button is-info is-small" th:href="@{/update(studentId=${student.id})}">

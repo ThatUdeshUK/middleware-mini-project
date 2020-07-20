@@ -69,7 +69,13 @@
                     <div class="field">
                         <label class="label">Name</label>
                         <div class="control">
-                            <input class="input" type="text" placeholder="Jhon Doe" th:field="*{name}" required/>
+                            <input class="input" type="text" placeholder="Jhon Doe" th:field="*{name}"/>
+                        </div>
+                    </div>
+                    <div class="field">
+                        <label class="label">Email</label>
+                        <div class="control">
+                            <input class="input" type="email" placeholder="jhon@example.com" th:field="*{email}"/>
                         </div>
                     </div>
                     <div class="field is-grouped">

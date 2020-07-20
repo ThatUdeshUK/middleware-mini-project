@@ -1,30 +1,78 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudentX</title>
+    <link rel="stylesheet" href="css/bulma/bulma.min.css">
 </head>
 <body>
+<div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <h1 class="title">StudentX</h1>
+            </a>
 
-<h1>Delete Student</h1>
-<a href="/">Goto home</a>
-<div th:if="${response}">
-    <div th:if="${response.status} == 200">
-        Student deleted successfully
-    </div>
-    <div th:if="${response.status} != 200">
-        Student delete failed
-        <div>
-            <span>Message:</span>
-            <div th:text="${response.message}"></div>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
+
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/">
+                    Home
+                </a>
+            </div>
+        </div>
+    </nav>
+</div>
+
+<section class="section">
+    <div class="container">
+        <h4 class="title is-4">Delete Student</h4>
+        <div class="columns">
+            <div class="column is-half">
+                <div th:if="${response}" class="mb-3">
+                    <article class="message is-success" th:if="${response.status} == 200">
+                        <div class="message-body">
+                            <div>
+                                Student deleted successfully
+                            </div>
+                            <a class="mt-2" href="/">Go to Home</a>
+                        </div>
+                    </article>
+                    <article class="message is-danger" th:if="${response.status} != 200">
+                        <div class="message-body">
+                            Student detete failed
+                            <div>
+                                <span>Message:</span>
+                                <div th:text="${response.message}"></div>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+                <form th:if="not ${response}" action="#" th:action="@{/delete(studentId=${student.id})}"
+                      th:object="${student}" method="post">
+                    <div th:text="'Deleting ' + ${student.name} + ', are you sure?'"></div>
+                    <input type="hidden" th:field="*{id}"/>
+                    <div class="field is-grouped mt-3">
+                        <p class="control">
+                            <a class="button" href="/">Cancel</a>
+                        </p>
+                        <p class="control">
+                            <input type="submit" class="button is-danger" value="Delete"/>
+                        </p>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
-</div>
-<form th:if="not ${response}" action="#" th:action="@{/delete(studentId=${student.id})}" th:object="${student}" method="post">
-    <div th:text="'Deleting ' + ${student.name} + ', are you sure?'"></div>
-    <input type="hidden" th:field="*{id}" />
-    <input type="submit" value="Delete"/>
-</form>
+</section>
 
 </body>
 </html>

@@ -1,20 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <title>Title</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>StudentX</title>
+    <link rel="stylesheet" href="css/bulma/bulma.min.css">
 </head>
 <body>
+<div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+        <div class="navbar-brand">
+            <a class="navbar-item" href="/">
+                <h1 class="title">StudentX</h1>
+            </a>
 
-<a href="/create">Create new student</a>
-<ul th:each="student : ${students}">
-    <li>
-        <span th:text="${student}"></span>
-        <a th:href="@{/update(studentId=${student.id})}">Update</a>
-        <a th:href="@{/delete(studentId=${student.id})}">Delete</a>
-    </li>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+               data-target="navbarBasicExample">
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+                <span aria-hidden="true"></span>
+            </a>
+        </div>
 
-</ul>
+        <div id="navbarBasicExample" class="navbar-menu">
+            <div class="navbar-start">
+                <a class="navbar-item" href="/">
+                    Home
+                </a>
+                <div class="navbar-item">
+                    <div class="buttons">
+                        <a class="button is-primary" href="/create">
+                            <strong>Create Student</strong>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+</div>
 
+<section class="section">
+    <div class="container">
+        <h4 class="title is-4">Listing</h4>
+        <table class="table is-fullwidth">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="student : ${students}">
+                <th th:text="${student.id}">1</th>
+                <td th:text="${student.name}"></td>
+                <td>
+                    <div class="buttons">
+                        <a class="button is-info is-small" th:href="@{/update(studentId=${student.id})}">
+                            Update
+                        </a>
+                        <a class="button is-danger is-small" th:href="@{/delete(studentId=${student.id})}">
+                            Delete
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
 </body>
 </html>

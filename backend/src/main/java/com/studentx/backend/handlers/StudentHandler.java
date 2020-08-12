@@ -67,6 +67,12 @@ public class StudentHandler {
         if (newStudent.getEmail() != null) {
             oldStudent.setEmail(newStudent.getEmail());
         }
+        if (newStudent.getTel() != null) {
+            oldStudent.setTel(newStudent.getTel());
+        }
+        if (newStudent.getNic() != null) {
+            oldStudent.setNic(newStudent.getNic());
+        }
 
         studentRepository.save(oldStudent);
         return new SuccessResponse("Student updated successfully");

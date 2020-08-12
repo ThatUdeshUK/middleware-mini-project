@@ -45,6 +45,8 @@
                 <th>Id</th>
                 <th>Name</th>
                 <th>Email</th>
+                <th>Tel No</th>
+                <th>NIC</th>
                 <th>Actions</th>
             </tr>
             </thead>
@@ -53,6 +55,8 @@
                 <th th:text="${student.id}"></th>
                 <td th:text="${student.name}"></td>
                 <td th:text="${student.email}"></td>
+                <td th:text="${student.tel}"></td>
+                <td th:text="${student.nic}"></td>
                 <td>
                     <div class="buttons">
                         <a class="button is-info is-small" th:href="@{/update(studentId=${student.id})}">

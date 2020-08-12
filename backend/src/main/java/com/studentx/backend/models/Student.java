@@ -17,6 +17,10 @@ public class Student {
 
     private String email;
 
+    private String tel;
+
+    private String nic;
+
     public Integer getId() {
         return id;
     }
@@ -35,5 +39,25 @@ public class Student {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getNic() {
+        return nic;
+    }
+
+    public void setNic(String nic) {
+        this.nic = nic;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    public String getTel() {
+        return tel;
+    }
+
+    public void setTel(String tel) {
+        this.tel = tel;
     }
 }
